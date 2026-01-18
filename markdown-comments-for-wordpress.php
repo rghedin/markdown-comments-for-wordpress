@@ -175,6 +175,11 @@ function markdown_comments_apply_inline_formatting( $text ) {
         return '<a href="' . $url . '" rel="nofollow">' . esc_html($matches[1]) . '</a>';
     }, $text );
 
+    // Blockquotes.
+    $text = preg_replace_callback( '/(?:^&gt;\s?(.*)$\n?)+/m', function($matches) {
+        return '<blockquote>' . esc_html($matches[1]) . '</blockquote>';
+    }, $text );
+
     return $text;
 }
 
